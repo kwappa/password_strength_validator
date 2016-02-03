@@ -1,9 +1,10 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'password_strength_validator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'password_strength_validator'
-  spec.version       = '0.1.0'
+  spec.version       = PasswordStrengthValidator::VERSION
   spec.authors       = ['SHIOYA, Hiromu']
   spec.email         = ['kwappa.856@gmail.com']
 
