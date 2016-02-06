@@ -9,8 +9,13 @@ module PasswordStrengthValidator
   }.freeze
 
   class Validator
-    def initialize(options = {})
-      @options = DEFAULT_OPTIONS.merge(options)
+    def initialize(password, options = {})
+      @password = password
+      @options  = DEFAULT_OPTIONS.merge(options)
+    end
+
+    def valid?
+      true
     end
   end
 end
