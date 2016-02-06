@@ -25,4 +25,21 @@ describe PasswordStrengthValidator::Validator do
       specify { expect(validator).to_not be_enough_length }
     end
   end
+
+  describe '#has_uppercase?' do
+    context 'only lowercase' do
+      let(:password) { 'onlylowercase' }
+      specify { expect(validator).to_not be_has_uppercase }
+    end
+
+    context 'only uppercase' do
+      let(:password) { 'ONLYLUPPERCASE' }
+      specify { expect(validator).to be_has_uppercase }
+    end
+
+    context 'with mixed case' do
+      let(:password) { 'MixedCasePassword' }
+      specify { expect(validator).to be_has_uppercase }
+    end
+  end
 end

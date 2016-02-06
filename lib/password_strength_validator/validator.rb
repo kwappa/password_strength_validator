@@ -23,5 +23,9 @@ module PasswordStrengthValidator
     def enough_length?
       @password.length.between?(@options.min_length, @options.max_length)
     end
+
+    def has_uppercase?
+      !!@password.match(/[A-Z]/)
+    end
   end
 end
