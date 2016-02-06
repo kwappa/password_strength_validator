@@ -1,7 +1,9 @@
+require 'ostruct'
+
 module PasswordStrengthValidator
   DEFAULT_OPTIONS = {
     min_length:  8,
-    max_length: 12,
+    max_length: 72,
     require_uppercase: true,
     require_lowercase: true,
     number_of_digits:  1,
@@ -11,11 +13,15 @@ module PasswordStrengthValidator
   class Validator
     def initialize(password, options = {})
       @password = password
-      @options  = DEFAULT_OPTIONS.merge(options)
+      @options  = OpenStruct.new(DEFAULT_OPTIONS.merge(options))
     end
 
     def valid?
       true
+    end
+
+    def enough_length?
+      @password.length.between?(@options.min_length, @options.max_length)
     end
   end
 end
