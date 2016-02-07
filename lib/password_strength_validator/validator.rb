@@ -27,5 +27,9 @@ module PasswordStrengthValidator
     def has_uppercase?
       !!@password.match(/[A-Z]/)
     end
+
+    def has_lowercase?
+      !!@password.match(/[a-z]/)
+    end
   end
 end
