@@ -59,4 +59,22 @@ describe PasswordStrengthValidator::Validator do
       specify { expect(validator).to be_has_lowercase }
     end
   end
+
+  describe '#has_enought_digits?' do
+    context 'without any digits' do
+      let(:password) { 'LongEnoughtWithoutDigits' }
+      specify { expect(validator).to_not be_has_enough_digits }
+    end
+
+    context 'with enough one digits' do
+      let(:password) { 'LongEnoughtWith1Digits' }
+      specify { expect(validator).to be_has_enough_digits }
+    end
+
+    context 'with not enough digits' do
+      let(:options) { { number_of_digits: 4 } }
+      let(:password) { '3isNotEnough' }
+      specify { expect(validator).to_not be_has_enough_digits }
+    end
+  end
 end

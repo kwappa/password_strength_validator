@@ -31,5 +31,9 @@ module PasswordStrengthValidator
     def has_lowercase?
       !!@password.match(/[a-z]/)
     end
+
+    def has_enough_digits?
+      @password.split('').find_all { |c| c.match(/[0-9]/) }.size >= @options.number_of_digits
+    end
   end
 end
