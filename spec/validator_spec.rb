@@ -77,4 +77,26 @@ describe PasswordStrengthValidator::Validator do
       specify { expect(validator).to_not be_has_enough_digits }
     end
   end
+
+  describe '#has_enough_symbols?' do
+    context 'without any symbols' do
+      let(:password) { 'LongEnoughtWithoutSymbols' }
+
+      context 'and default options' do
+        specify { expect(validator).to be_has_enough_symbols }
+      end
+
+      context 'and custom options' do
+        let(:options) { { number_of_symbols: 1 } }
+        specify { expect(validator).to_not be_has_enough_symbols }
+      end
+
+    end
+
+    context 'with two symbols' do
+      let(:password) { '!LongEnoughtWith_TwoSymbols|' }
+        let(:options) { { number_of_symbols: 2 } }
+        specify { expect(validator).to be_has_enough_symbols }
+    end
+  end
 end
