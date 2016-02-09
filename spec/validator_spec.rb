@@ -41,6 +41,12 @@ describe PasswordStrengthValidator::Validator do
       let(:password) { 'MixedCasePassword' }
       specify { expect(validator).to be_has_uppercase }
     end
+
+    context 'without validation' do
+      let(:password) { 'onlylowercase' }
+      let(:options)  { { require_uppercase: false } }
+      specify { expect(validator).to be_has_uppercase }
+    end
   end
 
   describe '#has_lowercase?' do
@@ -56,6 +62,12 @@ describe PasswordStrengthValidator::Validator do
 
     context 'with mixed case' do
       let(:password) { 'MixedCasePassword' }
+      specify { expect(validator).to be_has_lowercase }
+    end
+
+    context 'without validation' do
+      let(:password) { 'ONLYUPPERCASE' }
+      let(:options)  { { require_lowercase: false } }
       specify { expect(validator).to be_has_lowercase }
     end
   end
@@ -76,6 +88,12 @@ describe PasswordStrengthValidator::Validator do
       let(:password) { '3isNotEnough' }
       specify { expect(validator).to_not be_has_enough_digits }
     end
+
+    context 'without validation' do
+      let(:password) { 'WithOutAnyDigits' }
+      let(:options)  { { number_of_digits: 0 } }
+      specify { expect(validator).to be_has_enough_digits }
+    end
   end
 
   describe '#has_enough_symbols?' do
@@ -90,13 +108,12 @@ describe PasswordStrengthValidator::Validator do
         let(:options) { { number_of_symbols: 1 } }
         specify { expect(validator).to_not be_has_enough_symbols }
       end
-
     end
 
     context 'with two symbols' do
       let(:password) { '!LongEnoughtWith_TwoSymbols|' }
-        let(:options) { { number_of_symbols: 2 } }
-        specify { expect(validator).to be_has_enough_symbols }
+      let(:options) { { number_of_symbols: 2 } }
+      specify { expect(validator).to be_has_enough_symbols }
     end
   end
 end

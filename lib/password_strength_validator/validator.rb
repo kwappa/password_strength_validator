@@ -24,7 +24,7 @@ module PasswordStrengthValidator
     end
 
     def valid?
-      true
+      enough_length? && has_uppercase? && has_lowercase? && has_enough_digits? && has_enough_symbols?
     end
 
     def enough_length?
@@ -32,11 +32,11 @@ module PasswordStrengthValidator
     end
 
     def has_uppercase?
-      !!@password.match(/[A-Z]/)
+      !@options.require_uppercase || !!@password.match(/[A-Z]/)
     end
 
     def has_lowercase?
-      !!@password.match(/[a-z]/)
+      !@options.require_lowercase || !!@password.match(/[a-z]/)
     end
 
     def has_enough_digits?
