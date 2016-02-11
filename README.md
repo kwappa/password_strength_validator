@@ -34,6 +34,11 @@ end
 !"\#$%&'()*+,-./:;<=>?[\]^_`{|}~
 ```
 
+- custom error message
+
+to cusotomize error message, specify your local file with key:
+
+`#{lang}.errors.messages.weak_password`
 
 ## License
 
