@@ -9,7 +9,6 @@ require 'password_strength_validator'
 
 class TestModel
   include ActiveModel::Validations
-  include ActiveModel::Validations
 
   def initialize(attributes = {})
     @attributes = attributes
@@ -22,4 +21,8 @@ end
 
 class TestDefaultValidationModel < TestModel
   validates :password, password_strength: :true
+end
+
+class TestValidateWithOptionModel < TestModel
+  validates :password, password_strength: { min_length: 12, number_of_digits: 3, number_of_symbols: 3 }
 end
