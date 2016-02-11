@@ -20,7 +20,7 @@ class TestModel
 end
 
 class TestDefaultValidationModel < TestModel
-  validates :password, password_strength: :true
+  validates :password, password_strength: true
 end
 
 class TestValidateWithOptionModel < TestModel
