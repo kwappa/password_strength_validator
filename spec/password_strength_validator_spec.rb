@@ -8,8 +8,8 @@ describe PasswordStrengthValidator::Validator do
     end
   end
 
-  shared_examples 'rejects week password' do
-    it 'rejects week password' do
+  shared_examples 'rejects weak password' do
+    it 'rejects weak password' do
       model = test_class.new(password: password)
       expect(model).to_not be_valid
     end
@@ -20,34 +20,34 @@ describe PasswordStrengthValidator::Validator do
     context 'with default password validation' do
       let(:test_class) { TestDefaultValidationModel }
 
-      context 'with long enough password with number' do
+      context 'when password is strong enough' do
         let(:password)   { 'LongEnoughW1thNum83r' }
         include_examples 'accepts strong password'
       end
 
       context 'when password is too short' do
         let(:password)   { 'Sh0rt' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password is too long' do
         let(:password)   { 'Ab1' + 'a' * 72 }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password does not include lowercase' do
         let(:password)   { 'WITH0UTLOSERCASE' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password does not include uppercase' do
         let(:password)   { 'with0utuppercase' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password does not include digit' do
         let(:password)   { 'WithOutAnyDigit' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
     end
 
@@ -56,17 +56,17 @@ describe PasswordStrengthValidator::Validator do
 
       context 'when password is too short from given option' do
         let(:password)   { '123!@#Abc' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password does not include enough count of digits' do
         let(:password)   { 'NotEnoughdigits12!@#' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password does not include enough count of symbols' do
         let(:password)   { 'NotEnoughSymbols123!@' }
-        include_examples 'rejects week password'
+        include_examples 'rejects weak password'
       end
 
       context 'when password includes enough digits and symbols' do

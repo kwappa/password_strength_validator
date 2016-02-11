@@ -18,7 +18,7 @@ end
 ```
 
 - add extra option for more strength
-  - rquire 12 - 72 characters
+  - require 12 - 72 characters
   - require 3 or more digits
   - require 3 or more symbols
 
