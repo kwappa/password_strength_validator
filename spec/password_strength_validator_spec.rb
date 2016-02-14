@@ -36,7 +36,7 @@ describe ActiveModel::Validations::PasswordStrengthValidator do
       end
 
       context 'when password does not include lowercase' do
-        let(:password)   { 'WITH0UTLOSERCASE' }
+        let(:password)   { 'WITH0UTLOWERCASE' }
         include_examples 'rejects weak password'
       end
 
