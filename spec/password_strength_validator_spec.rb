@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PasswordStrengthValidator::Validator do
+describe ActiveModel::Validations::PasswordStrengthValidator do
   shared_examples 'accepts strong password' do
     it 'accepts strong password' do
       model = test_class.new(password: password)
