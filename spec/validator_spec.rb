@@ -10,6 +10,11 @@ describe PasswordStrengthValidator::Validator do
       specify { expect(validator).to_not be_enough_length }
     end
 
+    context 'when nil' do
+      let(:password) { nil }
+      specify { expect(validator).to_not be_enough_length }
+    end
+
     context 'when too short' do
       let(:password) { 'short' }
       specify { expect(validator).to_not be_enough_length }
@@ -27,6 +32,11 @@ describe PasswordStrengthValidator::Validator do
   end
 
   describe '#has_uppercase?' do
+    context 'when nil' do
+      let(:password) { nil }
+      specify { expect(validator).to_not be_has_uppercase }
+    end
+
     context 'only lowercase' do
       let(:password) { 'onlylowercase' }
       specify { expect(validator).to_not be_has_uppercase }
@@ -50,6 +60,11 @@ describe PasswordStrengthValidator::Validator do
   end
 
   describe '#has_lowercase?' do
+    context 'when nil' do
+      let(:password) { nil }
+      specify { expect(validator).to_not be_has_lowercase }
+    end
+
     context 'only lowercase' do
       let(:password) { 'onlylowercase' }
       specify { expect(validator).to be_has_lowercase }
@@ -73,6 +88,11 @@ describe PasswordStrengthValidator::Validator do
   end
 
   describe '#has_enought_digits?' do
+    context 'when nil' do
+      let(:password) { nil }
+      specify { expect(validator).to_not be_has_enough_digits }
+    end
+
     context 'without any digits' do
       let(:password) { 'LongEnoughtWithoutDigits' }
       specify { expect(validator).to_not be_has_enough_digits }
@@ -97,6 +117,11 @@ describe PasswordStrengthValidator::Validator do
   end
 
   describe '#has_enough_symbols?' do
+    context 'when nil' do
+      let(:password) { nil }
+      specify { expect(validator).to_not be_has_enough_symbols }
+    end
+
     context 'without any symbols' do
       let(:password) { 'LongEnoughtWithoutSymbols' }
 

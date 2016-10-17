@@ -14,7 +14,7 @@ module PasswordStrengthValidator
 
   class Validator
     def initialize(password, options = {})
-      @password = password
+      parse_and_set_password(password)
       @options  = OpenStruct.new(DEFAULT_OPTIONS.merge(options))
     end
 
@@ -39,7 +39,12 @@ module PasswordStrengthValidator
     end
 
     def has_enough_symbols?
+      return false if @password.empty?
       @password.each_char.map(&:ord).select { |c| SYMBOLS.include?(c) }.size >= @options.number_of_symbols
+    end
+
+    def parse_and_set_password(password)
+      @password = password || ''
     end
   end
 end
